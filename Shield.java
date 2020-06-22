@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Shield {
 
@@ -14,6 +16,17 @@ public class Shield {
 
         // TODO 1 : map names to agents list
         List<Agent> agents = new ArrayList<>();
+
+        agents = names.stream()
+                .map(item -> {
+                    String[] nameCompleted = item.replace("  "," ").split(" ");
+                    String firstName = nameCompleted[0];
+                    String lastName = nameCompleted[1];
+                    Agent agent = new Agent(firstName,lastName);
+                    return agent;
+                })
+                .collect(Collectors.toList());
+
 
         showAgents(agents);
     }
